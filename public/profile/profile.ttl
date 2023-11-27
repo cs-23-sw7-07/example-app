@@ -1,0 +1,24 @@
+@prefix interop: <http://www.w3.org/ns/solid/interop#>.
+@prefix sw7-07: <https://sw7-07.online/>.
+@prefix acme: <https://acme.example/>.
+@prefix acl: <https://www.w3.org/ns/auth/acl#>.
+@prefix solidtrees: <https://shapetrees.example/solid/>.
+
+sw7-07:\#id
+  a interop:Application ;
+  interop:applicationName "SW7-07 Solid Application" ;
+  interop:applicationDescription "Manage projects with ease" ;
+  interop:applicationAuthor acme:\#corp ;
+  interop:applicationThumbnail sw7-07:thumb.svg ;
+  interop:hasAccessNeedGroup sw7-07:\#need-group-pm .
+sw7-07:\#need-group-pm
+  interop:accessNecessity interop:accessRequired ;
+  interop:accessScenario interop:PersonalAccess ;
+  interop:authenticatesAs interop:Pilot ;
+  interop:hasAccessDecoratorIndex sw7-07:index ;
+  interop:hasAccessNeed sw7-07:\#need-project .
+sw7-07:\#need-project
+  a interop:AccessNeed ;
+  interop:registeredShapeTree solidtrees:Project ;
+  interop:accessNecessity interop:accessRequired ;
+  interop:accessMode acl:Read, acl:Write .
